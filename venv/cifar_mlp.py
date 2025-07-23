@@ -17,9 +17,11 @@ model.add(Flatten(input_shape = (32,32,3)))
 model.add(Dense(units=10, activation = 'softmax'))
 
 #compile
-model.compile(optimizer = 'adam', loss = 'categorical_crossentropy')
+model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
 #train
 model.fit(x_train, y_train, epochs = 10, batch_size = 64)
 
 #evaluate
+loss, accuracy = model.evaluate(x_test, y_test)
+print(f'Accuracy: {accuracy}, Loss: {loss}')
