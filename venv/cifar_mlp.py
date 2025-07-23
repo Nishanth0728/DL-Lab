@@ -14,14 +14,34 @@ y_test = to_categorical(y_test)
 #build th architecture
 model = Sequential()
 model.add(Flatten(input_shape = (32,32,3)))
+model.add(Dense(units=1024, activation = 'relu'))
+model.add(Dense(units=512, activation = 'relu'))
+model.add(Dense(units=256, activation = 'relu'))
+model.add(Dense(units=128, activation = 'relu'))
+model.add(Dense(units=64, activation = 'relu'))
 model.add(Dense(units=10, activation = 'softmax'))
 
 #compile
 model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
 #train
-model.fit(x_train, y_train, epochs = 10, batch_size = 64)
+history = model.fit(x_train, y_train, epochs = 100, batch_size = 64, validation_data = (x_test,y_test))
+print(history.history.items())
+print(history.history.keys())
 
 #evaluate
 loss, accuracy = model.evaluate(x_test, y_test)
 print(f'Accuracy: {accuracy}, Loss: {loss}')
+
+#visualization
+plt.plot(history.history['accuracy'], label = 'Train Accuaracy', color = 'blue')
+plt.plot(history.history['val_accuracy'], label = 'Validation Accuracy', color = 'red')
+plt.legend()
+plt.title("Epoch vs Accuracy on train and test data")
+plt.show()
+
+plt.plot(history.history['loss'], label = 'Train Loss', color = 'blue')
+plt.plot(history.history['val_loss'], label = 'Validation Loss', color = 'red')
+plt.legend()
+plt.title("Epoch vs Accuracy on train and test data")
+plt.show()

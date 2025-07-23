@@ -7,7 +7,7 @@ loss : categorical_crossentropy
 no. of epochs : 10
 batch_size : 64
 test_acc : true
-test_loss : 
+test_loss : true
 
 
 Epoch 1/10
@@ -32,3 +32,18 @@ Epoch 10/10
 782/782 ━━━━━━━━━━━━━━━━━━━━ 1s 1ms/step - accuracy: 0.2797 - loss: 63.7244  
 313/313 ━━━━━━━━━━━━━━━━━━━━ 0s 968us/step - accuracy: 0.2260 - loss: 76.7945 
 Accuracy: 0.2287999987602234, Loss: 76.339599609375
+
+
+-----------------------------------------------------------------------------------------------------
+Experiment - 02
+
+history.history['accuracy'] : true
+history.history['val_accuracy'] : true
+epochs vs Accuracy on train and validation data : true
+
+
+
+-----------------------------------------------------------------------------------------------------
+Experiment - 03
+
+no. of epochs : 30
